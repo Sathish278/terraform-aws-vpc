@@ -73,15 +73,22 @@ resource "aws_subnet" "database" { # first name is public[0], second name is pub
   )
 }
 
-resource "aws_eip" "nat" {
-  domain   = "vpc"
+
+resource "aws_db_subnet_group" "default" {
+  name       = "${local.resource_name}"
+  subnet_ids = aws_subnet.database[*].id
+
   tags = merge(
     var.common_tags,
-    var.EIP_tags,
+    var.database_subnet_group_tags,
     {
-        Name = "${local.resource_name}-EIP"
+        Name = "${local.resource_name}"
     }
   )
+}
+
+resource "aws_eip" "nat" {
+  domain   = "vpc"
 }
 
 resource "aws_nat_gateway" "nat" {

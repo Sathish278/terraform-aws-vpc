@@ -78,7 +78,7 @@ variable "database_subnet_cidr_tags" {
     default = {}
 }
 
-variable "EIP_tags" {
+variable "database_subnet_group_tags" {
     type = map
     default = {}
 }
@@ -106,7 +106,6 @@ variable "database_route_table_tags" {
     type = map
     default = {}
 }
-
 
 #### Peering ####
 variable "is_peering_required" {
