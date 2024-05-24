@@ -75,6 +75,13 @@ resource "aws_subnet" "database" { # first name is public[0], second name is pub
 
 resource "aws_eip" "nat" {
   domain   = "vpc"
+  tags = merge(
+    var.common_tags,
+    var.EIP_tags,
+    {
+        Name = "${local.resource_name}-EIP"
+    }
+  )
 }
 
 resource "aws_nat_gateway" "nat" {
