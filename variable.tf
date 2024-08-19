@@ -83,6 +83,12 @@ variable "database_subnet_group_tags" {
     default = {}
 }
 
+#### eip ####
+variable "eip_tags" {
+    type = map
+    default = {}
+}
+
 #### Nat gateway ####
 variable "nat_gateway_tags" {
     type = map
